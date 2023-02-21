@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getFilmByQuery } from 'services/api';
 import { Form } from 'components/Form/Form';
+import { routes } from 'helpers/routes';
 
 export const MoviesPage = () => {
   const [searchedMovies, setSearchedMovies] = useState([]);
@@ -39,7 +40,7 @@ export const MoviesPage = () => {
         <ul>
           {searchedMovies.map(({ id, original_title }) => (
             <li key={id}>
-              <Link>
+              <Link to={routes.MOVIE_DETAILS(id)}>
                 <h3>{original_title}</h3>
               </Link>
             </li>
