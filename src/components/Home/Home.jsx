@@ -1,3 +1,4 @@
+import { routes } from 'helpers/routes';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -32,7 +33,7 @@ export const HomePage = () => {
       <ul>
         {trendingMovies.map(({ id, title }) => (
           <li key={id}>
-            <Link>
+            <Link to={routes.MOVIE_DETAILS(id)}>
               <h3>{title}</h3>
             </Link>
           </li>
