@@ -63,16 +63,7 @@ export const getCastInfo = async movieId => {
   };
   const { data } = await axios.get(`/movie/${movieId}/credits`, { params });
   const array = data.cast;
-
-  const { original_name, profile_path, character } = array;
-
-  return {
-    original_name,
-    profile_path: profile_path
-      ? 'https://image.tmdb.org/t/p/w300' + profile_path
-      : defaultPhoto,
-    character,
-  };
+  return array;
 };
 
 export const getReviewsInfo = async movieId => {
@@ -82,7 +73,8 @@ export const getReviewsInfo = async movieId => {
   };
   const { data } = await axios.get(`/movie/${movieId}/reviews`, { params });
 
-  const array = data.results.map(({ author, content }) => ({
+  const array = data.results.map(({ id, author, content }) => ({
+    id,
     author,
     content,
   }));
