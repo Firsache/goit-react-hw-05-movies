@@ -6,7 +6,12 @@ import { routes } from 'helpers/routes';
 export const Header = () => {
   return (
     <HeaderBlock>
-      <Box maxWidth={1200} display="flex" justifyContent="space-between">
+      <Box
+        m="0 auto"
+        maxWidth={1200}
+        display="flex"
+        justifyContent="space-between"
+      >
         <Link to={routes.HOME}>Movies App</Link>
         <Navigation>
           <NavLink to={routes.HOME}>Home</NavLink>
