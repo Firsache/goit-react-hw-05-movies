@@ -31,11 +31,11 @@ export const HomePage = () => {
       {isLoading && <div>Loading</div>}
       <ul>
         {trendingMovies.map(({ id, title }) => (
-          <Link key={id}>
-            <li>
+          <li key={id}>
+            <Link>
               <h3>{title}</h3>
-            </li>
-          </Link>
+            </Link>
+          </li>
         ))}
       </ul>
     </>
