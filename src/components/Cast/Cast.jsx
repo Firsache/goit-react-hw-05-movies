@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getCastInfo } from 'services/api';
+import defaultActor from '../../img/defaultPerson.jpeg';
 
 export const Cast = () => {
   const [castInfo, setCastInfo] = useState([]);
@@ -16,10 +17,9 @@ export const Cast = () => {
       try {
         setIsLoading(true);
 
-        const cast = await getCastInfo(movieId);
-        console.log(cast);
+        const array = await getCastInfo(movieId);
 
-        setCastInfo(cast);
+        setCastInfo(array);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -30,19 +30,26 @@ export const Cast = () => {
     getApiCastInfo();
   }, [movieId]);
 
-  // const { original_name, profile_path, character } = castInfo;
-
   return (
     <>
       {error && <div>Try to reload the page</div>}
       {isLoading && <div>Loading</div>}
       {castInfo && (
-        <p>
-          Cast is here
-          {/* <img src={profile_path} alt={original_name} />
-          <p>{original_name}</p>
-          <p>{character}</p> */}
-        </p>
+        <ul>
+          {castInfo.map(({ id, original_name, profile_path, character }) => {
+            let path = profile_path
+              ? 'https://image.tmdb.org/t/p/w300' + profile_path
+              : defaultActor;
+
+            return (
+              <li key={id}>
+                <img src={path} alt={original_name} />
+                <p>{original_name}</p>
+                <p>{character}</p>
+              </li>
+            );
+          })}
+        </ul>
       )}
     </>
   );
