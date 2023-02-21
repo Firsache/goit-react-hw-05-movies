@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { getTrendingFilms } from 'services/api';
 
 export const HomePage = () => {
@@ -30,9 +31,11 @@ export const HomePage = () => {
       {isLoading && <div>Loading</div>}
       <ul>
         {trendingMovies.map(({ id, title }) => (
-          <li key={id}>
-            <h3>{title}</h3>
-          </li>
+          <Link key={id}>
+            <li>
+              <h3>{title}</h3>
+            </li>
+          </Link>
         ))}
       </ul>
     </>
