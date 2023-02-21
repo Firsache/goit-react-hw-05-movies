@@ -1,4 +1,6 @@
 import axios from 'axios';
+import defaultPhoto from '../img/default-photo.jpeg';
+import { getGenres } from 'helpers/getGenres';
 
 const API_KEY = '7075a5d5708cc9d9db094f2ee386024f';
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
@@ -31,26 +33,27 @@ export const getDetailedFilmInfo = async movieId => {
     api_key: API_KEY,
   };
   const { data } = await axios.get(`/movie/${movieId}`, { params });
-  const results = data.results.map(
-    ({
-      id,
-      original_title,
-      genres,
-      overview,
-      poster_path,
-      release_date,
-      vote_average,
-    }) => ({
-      id,
-      original_title,
-      genres,
-      overview,
-      poster_path,
-      release_date,
-      vote_average,
-    })
-  );
-  return { results };
+  const {
+    id,
+    original_title,
+    genres,
+    overview,
+    poster_path,
+    release_date,
+    vote_average,
+  } = data;
+
+  return {
+    id,
+    original_title,
+    genres: genres.length ? getGenres(genres) : "Genres aren't given",
+    overview,
+    poster_path: poster_path
+      ? 'https://image.tmdb.org/t/p/w300' + poster_path
+      : defaultPhoto,
+    release_date: new Date(release_date).getFullYear(),
+    vote_average: Math.round(vote_average * 10),
+  };
 };
 
 export const getCastInfo = async movieId => {
@@ -60,13 +63,16 @@ export const getCastInfo = async movieId => {
   };
   const { data } = await axios.get(`/movie/${movieId}/credits`, { params });
   const array = data.cast;
-  const cast = array.map(({ id, original_name, profile_path, character }) => ({
-    id,
+
+  const { original_name, profile_path, character } = array;
+
+  return {
     original_name,
-    profile_path,
+    profile_path: profile_path
+      ? 'https://image.tmdb.org/t/p/w300' + profile_path
+      : defaultPhoto,
     character,
-  }));
-  return { cast };
+  };
 };
 
 export const getReviewsInfo = async movieId => {
@@ -75,17 +81,11 @@ export const getReviewsInfo = async movieId => {
     language: 'en-US',
   };
   const { data } = await axios.get(`/movie/${movieId}/reviews`, { params });
-  const array = data.results;
-  const reviews = array.map(({ id, author, content }) => ({
-    id,
+
+  const array = data.results.map(({ author, content }) => ({
     author,
     content,
   }));
-  return { reviews };
-};
 
-// getTrendingFilms();
-// getFilmByQuery();
-// getDetailedFilmInfo();
-// getCastInfo();
-// getReviewsInfo();
+  return array;
+};
