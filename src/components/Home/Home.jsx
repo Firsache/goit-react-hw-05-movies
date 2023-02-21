@@ -33,7 +33,7 @@ export const HomePage = () => {
       <ul>
         {trendingMovies.map(({ id, title }) => (
           <li key={id}>
-            <Link to={routes.MOVIE_DETAILS(id)}>
+            <Link to={routes.MOVIE_DETAILS_PATH(id)}>
               <h3>{title}</h3>
             </Link>
           </li>
