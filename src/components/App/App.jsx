@@ -5,8 +5,7 @@ import { Layout } from 'layout/Layout/Layout';
 import { HomePage } from 'pages/Home/Home';
 import { MoviesPage } from 'pages/Movies/Movies';
 import { MovieDetailsPage } from 'pages/MovieDetails/MovieDetails';
-import { Cast } from 'components/Cast/Cast';
-import { Review } from 'components/Reviews/Reviews';
+import { Cast, Review } from '../index';
 
 export const App = () => {
   return (

@@ -1,22 +1,27 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
+
 import { getFilmByQuery } from 'services/api';
-import { Form } from 'components/Form/Form';
 import { routes } from 'helpers/routes';
+
+import { Form, Loader } from '../../components/index';
 
 export const MoviesPage = () => {
   const [searchedMovies, setSearchedMovies] = useState([]);
-  const [searchedQuery, setSearchedQuery] = useState('');
+  // const [searchedQuery, setSearchedQuery] = useState('');
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  const [searchParams, setSearchParams] = useSearchParams();
+  const querySearched = searchParams.get('query');
+
   useEffect(() => {
-    if (!searchedQuery) return;
+    if (!querySearched) return;
     async function getFilms() {
       try {
         setIsLoading(true);
 
-        const { results } = await getFilmByQuery(searchedQuery);
+        const { results } = await getFilmByQuery(querySearched);
         setSearchedMovies(results);
       } catch (error) {
         setError(error.message);
@@ -25,24 +30,22 @@ export const MoviesPage = () => {
       }
     }
     getFilms();
-  }, [searchedQuery]);
+  }, [querySearched]);
 
   const handleOnSubmit = value => {
-    setSearchedQuery(value);
+    setSearchParams({ query: value });
+    // setSearchedQuery(value);
   };
 
   return (
     <>
       {error && <div>Try to reload the page</div>}
-      {isLoading && <div>Loading</div>}
+      {isLoading && <Loader />}
       <Form onSubmit={handleOnSubmit} />
       {searchedMovies && (
         <ul>
           {searchedMovies.map(({ id, original_title }) => (
             <li key={id}>
-              {/* <Link to={`movies/${id}`}>
-                <h3>{original_title}</h3>
-              </Link> */}
               <Link to={routes.MOVIE_DETAILS_PATH(id)}>
                 <h3>{original_title}</h3>
               </Link>

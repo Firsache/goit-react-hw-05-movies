@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getReviewsInfo } from 'services/api';
+import { Loader } from '../index';
 
 export const Review = () => {
   const [reviewInfo, setReviewInfo] = useState([]);
@@ -32,7 +33,7 @@ export const Review = () => {
   return (
     <>
       {error && <div>Try to reload the page</div>}
-      {isLoading && <div>Loading</div>}
+      {isLoading && <Loader />}
       {reviewInfo && (
         <ul>
           {reviewInfo.map(({ id, author, content }) => (

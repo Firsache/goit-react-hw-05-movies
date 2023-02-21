@@ -1,8 +1,10 @@
-import { routes } from 'helpers/routes';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+
 import { getTrendingFilms } from 'services/api';
+import { routes } from 'helpers/routes';
+import { Loader } from '../../components/index';
 
 export const HomePage = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -10,7 +12,6 @@ export const HomePage = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    // if (!trendingMovies) return;
     async function getFilms() {
       try {
         setIsLoading(true);
@@ -29,7 +30,7 @@ export const HomePage = () => {
   return (
     <>
       {error && <div>Try to reload the page</div>}
-      {isLoading && <div>Loading</div>}
+      {isLoading && <Loader />}
       <ul>
         {trendingMovies.map(({ id, title }) => (
           <li key={id}>

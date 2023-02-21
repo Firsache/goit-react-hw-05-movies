@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+
 import { getDetailedFilmInfo } from 'services/api';
-import { MovieInfo } from 'components/MovieInfo/MovieInfo';
+import { MovieInfo, Loader } from '../../components/index';
 
 export const MovieDetailsPage = () => {
   const [detailedInfo, setDetailedInfo] = useState(null);
@@ -32,7 +33,7 @@ export const MovieDetailsPage = () => {
   return (
     <>
       {error && <div>Try to reload the page</div>}
-      {isLoading && <div>Loading</div>}
+      {isLoading && <Loader />}
       {detailedInfo && <MovieInfo detailedInfo={detailedInfo} />}
     </>
   );

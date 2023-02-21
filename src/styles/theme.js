@@ -6,7 +6,7 @@ export const theme = {
     black: '#000000',
     shadow: 'rgba(0, 0, 0, 0.15)',
     text: '#000000',
-    accent: '#ff6b08',
+    accent: '#4b9681',
   },
   space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
   fontSizes: {

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getCastInfo } from 'services/api';
+import { Loader } from '../index';
 import defaultActor from '../../img/defaultPerson.jpeg';
 
 export const Cast = () => {
@@ -33,7 +34,7 @@ export const Cast = () => {
   return (
     <>
       {error && <div>Try to reload the page</div>}
-      {isLoading && <div>Loading</div>}
+      {isLoading && <Loader />}
       {castInfo && (
         <ul>
           {castInfo.map(({ id, original_name, profile_path, character }) => {
