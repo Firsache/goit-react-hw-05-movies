@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { getReviewsInfo } from 'services/api';
 
 export const Review = () => {
-  const [reviewInfo, setReviewInfo] = useState(null);
+  const [reviewInfo, setReviewInfo] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -17,7 +17,6 @@ export const Review = () => {
         setIsLoading(true);
 
         const array = await getReviewsInfo(movieId);
-        console.log(array);
 
         setReviewInfo(array);
       } catch (error) {
@@ -35,11 +34,17 @@ export const Review = () => {
       {error && <div>Try to reload the page</div>}
       {isLoading && <div>Loading</div>}
       {reviewInfo && (
-        <p>
-          Review is here
-          {/* <p>Authot: {author}</p>
-          <p>{content}</p> */}
-        </p>
+        <ul>
+          {reviewInfo.map(({ id, author, content }) => (
+            <li key={id}>
+              <h3>Author: {author}</h3>
+              <p>{content}</p>
+            </li>
+          ))}
+        </ul>
+      )}
+      {reviewInfo.length === 0 && (
+        <div>There aren't any reviews for this movie.</div>
       )}
     </>
   );
