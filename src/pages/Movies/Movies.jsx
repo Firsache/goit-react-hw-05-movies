@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 
 import { getFilmByQuery } from 'services/api';
 import { routes } from 'helpers/routes';
@@ -11,8 +11,9 @@ export const MoviesPage = () => {
   // const [searchedQuery, setSearchedQuery] = useState('');
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const location = useLocation();
   const querySearched = searchParams.get('query');
 
   useEffect(() => {
@@ -46,7 +47,10 @@ export const MoviesPage = () => {
         <ul>
           {searchedMovies.map(({ id, original_title }) => (
             <li key={id}>
-              <Link to={routes.MOVIE_DETAILS_PATH(id)}>
+              <Link
+                state={{ from: location }}
+                to={routes.MOVIE_DETAILS_PATH(id)}
+              >
                 <h3>{original_title}</h3>
               </Link>
             </li>
