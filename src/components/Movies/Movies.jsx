@@ -40,7 +40,10 @@ export const MoviesPage = () => {
         <ul>
           {searchedMovies.map(({ id, original_title }) => (
             <li key={id}>
-              <Link to={routes.MOVIE_DETAILS(id)}>
+              {/* <Link to={`movies/${id}`}>
+                <h3>{original_title}</h3>
+              </Link> */}
+              <Link to={routes.MOVIE_DETAILS_PATH(id)}>
                 <h3>{original_title}</h3>
               </Link>
             </li>
