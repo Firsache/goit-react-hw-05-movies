@@ -18,7 +18,7 @@ export const MovieInfo = ({ detailedInfo }) => {
         <img src={poster_path} alt={original_title} />
         <div>
           <h2>
-            {original_title} <span>{release_date}</span>
+            {original_title} ({release_date})
           </h2>
           <p>User Score: {vote_average}%</p>
           <h3>Overview</h3>
