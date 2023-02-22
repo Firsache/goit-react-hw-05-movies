@@ -3,7 +3,7 @@ import { useLocation, useParams, Link } from 'react-router-dom';
 
 import { getDetailedFilmInfo } from 'services/api';
 import { routes } from 'helpers/routes';
-import { MovieInfo, Loader } from '../../components/index';
+import { MovieInfo, Loader } from 'components/index';
 
 const MovieDetailsPage = () => {
   const [detailedInfo, setDetailedInfo] = useState(null);
