@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 import { getTrendingFilms } from 'services/api';
 import { routes } from 'helpers/routes';
-import { Loader } from '../../components/index';
+import { Loader } from 'components/index';
 
 const HomePage = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
