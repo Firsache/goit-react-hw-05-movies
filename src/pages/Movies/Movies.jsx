@@ -4,11 +4,10 @@ import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { getFilmByQuery } from 'services/api';
 import { routes } from 'helpers/routes';
 
-import { Form, Loader } from '../../components/index';
+import { Form, Loader } from 'components/index';
 
 const MoviesPage = () => {
   const [searchedMovies, setSearchedMovies] = useState([]);
-  // const [searchedQuery, setSearchedQuery] = useState('');
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -35,7 +34,6 @@ const MoviesPage = () => {
 
   const handleOnSubmit = value => {
     setSearchParams({ query: value });
-    // setSearchedQuery(value);
   };
 
   return (
