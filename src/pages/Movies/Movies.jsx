@@ -6,7 +6,7 @@ import { routes } from 'helpers/routes';
 
 import { Form, Loader } from '../../components/index';
 
-export const MoviesPage = () => {
+const MoviesPage = () => {
   const [searchedMovies, setSearchedMovies] = useState([]);
   // const [searchedQuery, setSearchedQuery] = useState('');
   const [error, setError] = useState(null);
@@ -60,3 +60,5 @@ export const MoviesPage = () => {
     </>
   );
 };
+
+export default MoviesPage;

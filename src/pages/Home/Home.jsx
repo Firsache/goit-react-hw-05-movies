@@ -6,7 +6,7 @@ import { getTrendingFilms } from 'services/api';
 import { routes } from 'helpers/routes';
 import { Loader } from '../../components/index';
 
-export const HomePage = () => {
+const HomePage = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -44,3 +44,5 @@ export const HomePage = () => {
     </>
   );
 };
+
+export default HomePage;

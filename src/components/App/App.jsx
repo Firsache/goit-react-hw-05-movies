@@ -1,11 +1,17 @@
+import { lazy, Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { routes } from 'helpers/routes';
 
-import { Layout } from 'layout/Layout/Layout';
-import { HomePage } from 'pages/Home/Home';
-import { MoviesPage } from 'pages/Movies/Movies';
-import { MovieDetailsPage } from 'pages/MovieDetails/MovieDetails';
+// import { Layout } from 'layout/Layout/Layout';
+// import { HomePage } from 'pages/Home/Home';
+// import { MoviesPage } from 'pages/Movies/Movies';
+// import { MovieDetailsPage } from 'pages/MovieDetails/MovieDetails';
 import { Cast, Review } from '../index';
+
+const HomePage = lazy(() => import('pages/Home/Home'));
+const MoviesPage = lazy(() => import('pages/Movies/Movies'));
+const MovieDetailsPage = lazy(() => import('pages/MovieDetails/MovieDetails'));
+const Layout = lazy(() => import('layout/Layout/Layout'));
 
 export const App = () => {
   return (

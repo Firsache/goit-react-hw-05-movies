@@ -4,7 +4,7 @@ import { theme } from '../../styles/theme';
 import { GlobalStyles } from 'styles/GlobalStyles.styled';
 import { Header } from 'layout/Header/Header';
 
-export const Layout = () => {
+const Layout = () => {
   return (
     <ThemeProvider theme={theme}>
       <Header />
@@ -13,3 +13,5 @@ export const Layout = () => {
     </ThemeProvider>
   );
 };
+
+export default Layout;

@@ -5,7 +5,7 @@ import { getDetailedFilmInfo } from 'services/api';
 import { routes } from 'helpers/routes';
 import { MovieInfo, Loader } from '../../components/index';
 
-export const MovieDetailsPage = () => {
+const MovieDetailsPage = () => {
   const [detailedInfo, setDetailedInfo] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -41,3 +41,5 @@ export const MovieDetailsPage = () => {
     </>
   );
 };
+
+export default MovieDetailsPage;
