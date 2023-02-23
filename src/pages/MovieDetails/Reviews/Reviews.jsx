@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { getReviewsInfo } from 'services/api';
 import { Loader } from 'components/index';
 
+import { ReviewList, ReviewItem } from './Review.styled';
+
 const Review = () => {
   const [reviewInfo, setReviewInfo] = useState([]);
   const [error, setError] = useState(null);
@@ -35,14 +37,14 @@ const Review = () => {
       {error && <div>Try to reload the page</div>}
       {isLoading && <Loader />}
       {reviewInfo && (
-        <ul>
+        <ReviewList>
           {reviewInfo.map(({ id, author, content }) => (
-            <li key={id}>
+            <ReviewItem key={id}>
               <h3>Author: {author}</h3>
               <p>{content}</p>
-            </li>
+            </ReviewItem>
           ))}
-        </ul>
+        </ReviewList>
       )}
       {reviewInfo.length === 0 && (
         <div>There aren't any reviews for this movie.</div>
