@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useParams, Link } from 'react-router-dom';
+import { BsArrowLeft } from 'react-icons/bs';
 
 import { getDetailedFilmInfo } from 'services/api';
 import { routes } from 'helpers/routes';
-import { MovieInfo, Loader } from 'components/index';
+import { MovieInfo, Loader, Box } from 'components/index';
 
 const MovieDetailsPage = () => {
   const [detailedInfo, setDetailedInfo] = useState(null);
@@ -36,7 +37,19 @@ const MovieDetailsPage = () => {
     <>
       {error && <div>Try to reload the page</div>}
       {isLoading && <Loader />}
-      <Link to={location.state?.from ?? routes.HOME}>Go back</Link>
+      <Box
+        mt={32}
+        mb={0}
+        ml="10%"
+        display="flex"
+        justifyContent="space-between"
+        alignItems="flex-end"
+        width={90}
+      >
+        <BsArrowLeft size={20} />{' '}
+        <Link to={location.state?.from ?? routes.HOME}>Go back</Link>
+      </Box>
+
       {detailedInfo && <MovieInfo detailedInfo={detailedInfo} />}
     </>
   );
