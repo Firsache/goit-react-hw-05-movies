@@ -4,7 +4,8 @@ import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { getFilmByQuery } from 'services/api';
 import { routes } from 'helpers/routes';
 
-import { Form, Loader } from 'components/index';
+import { Box, Form, Loader } from 'components/index';
+import { List } from 'pages/Home/Home.styled';
 
 const MoviesPage = () => {
   const [searchedMovies, setSearchedMovies] = useState([]);
@@ -42,18 +43,20 @@ const MoviesPage = () => {
       {isLoading && <Loader />}
       <Form onSubmit={handleOnSubmit} />
       {searchedMovies && (
-        <ul>
-          {searchedMovies.map(({ id, original_title }) => (
-            <li key={id}>
-              <Link
-                state={{ from: location }}
-                to={routes.MOVIE_DETAILS_PATH(id)}
-              >
-                <h3>{original_title}</h3>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <Box m="0 auto" maxWidth={1200} mt={32}>
+          <List>
+            {searchedMovies.map(({ id, original_title }) => (
+              <li key={id}>
+                <Link
+                  state={{ from: location }}
+                  to={routes.MOVIE_DETAILS_PATH(id)}
+                >
+                  <h3>{original_title}</h3>
+                </Link>
+              </li>
+            ))}
+          </List>
+        </Box>
       )}
     </>
   );
