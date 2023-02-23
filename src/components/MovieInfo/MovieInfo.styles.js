@@ -4,6 +4,10 @@ export const Section = styled.section`
   padding: ${p => p.theme.space[5]}px ${p => p.theme.space[4]}px;
   display: flex;
   gap: ${p => p.theme.space[5]}px;
+
+  img {
+    border-radius: ${p => p.theme.radii.normal};
+  }
 `;
 export const Info = styled.div`
   padding-top: ${p => p.theme.space[3]}px;
