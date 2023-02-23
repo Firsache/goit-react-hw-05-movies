@@ -4,6 +4,8 @@ import { getCastInfo } from 'services/api';
 import { Loader } from 'components/index';
 import defaultActor from 'img/defaultPerson.jpeg';
 
+import { CastList, CastItem } from './Cast.styled';
+
 const Cast = () => {
   const [castInfo, setCastInfo] = useState([]);
   const [error, setError] = useState(null);
@@ -36,21 +38,24 @@ const Cast = () => {
       {error && <div>Try to reload the page</div>}
       {isLoading && <Loader />}
       {castInfo && (
-        <ul>
+        <CastList>
           {castInfo.map(({ id, original_name, profile_path, character }) => {
             let path = profile_path
               ? 'https://image.tmdb.org/t/p/w300' + profile_path
               : defaultActor;
 
             return (
-              <li key={id}>
+              <CastItem key={id}>
                 <img src={path} alt={original_name} />
                 <p>{original_name}</p>
                 <p>{character}</p>
-              </li>
+              </CastItem>
             );
           })}
-        </ul>
+        </CastList>
+      )}
+      {castInfo.length === 0 && (
+        <div>There isn't any information about the movie cast.</div>
       )}
     </>
   );
