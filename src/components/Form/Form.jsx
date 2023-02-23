@@ -1,5 +1,8 @@
+import { Box } from 'components';
 import { useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
+
+import { FormStyled, Input, Button } from './Form.styled';
 
 export const Form = ({ onSubmit }) => {
   const [searchedValue, setSearchedValue] = useState('');
@@ -18,18 +21,20 @@ export const Form = ({ onSubmit }) => {
     setSearchedValue('');
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <button>
-        <BsSearch size={15} />
-      </button>
-      <input
-        type="text"
-        autoComplete="off"
-        autoFocus
-        placeholder="Search movies"
-        value={searchedValue}
-        onChange={handleSearch}
-      />
-    </form>
+    <FormStyled onSubmit={handleSubmit}>
+      <Box position="relative" width={335}>
+        <Button>
+          <BsSearch size={16} />
+        </Button>
+        <Input
+          type="text"
+          autoComplete="off"
+          // autoFocus
+          placeholder="Search movies"
+          value={searchedValue}
+          onChange={handleSearch}
+        />
+      </Box>
+    </FormStyled>
   );
 };
