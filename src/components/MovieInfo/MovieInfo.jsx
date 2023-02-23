@@ -1,5 +1,8 @@
 import { Link, Outlet } from 'react-router-dom';
 import { routes } from 'helpers/routes';
+import { Box } from 'components';
+
+import { Section, AddSection, Info, Button } from './MovieInfo.styles';
 
 export const MovieInfo = ({ detailedInfo }) => {
   const {
@@ -12,11 +15,10 @@ export const MovieInfo = ({ detailedInfo }) => {
   } = detailedInfo;
 
   return (
-    <>
-      <section>
-        {/* Go back */}
+    <Box m="0 auto" maxWidth={1200}>
+      <Section>
         <img src={poster_path} alt={original_title} />
-        <div>
+        <Info>
           <h2>
             {original_title} ({release_date})
           </h2>
@@ -25,21 +27,33 @@ export const MovieInfo = ({ detailedInfo }) => {
           <p>{overview}</p>
           <h3>Genres</h3>
           <p>{genres}</p>
-        </div>
-      </section>
+        </Info>
+      </Section>
 
-      <section>
+      <AddSection>
         <h2>Additional information</h2>
 
-        <Link to={routes.CAST}>
-          <p>Cast</p>
-        </Link>
-        <Link to={routes.REVIEWS}>
-          <p>Reviews</p>
-        </Link>
+        <Box
+          display="flex"
+          justifyContent="space-between"
+          width={250}
+          alignItems="center"
+        >
+          <Button>
+            <Link to={routes.CAST}>
+              <p>Cast</p>
+            </Link>
+          </Button>
 
-        <Outlet />
-      </section>
-    </>
+          <Button>
+            <Link to={routes.REVIEWS}>
+              <p>Reviews</p>
+            </Link>
+          </Button>
+        </Box>
+      </AddSection>
+
+      <Outlet />
+    </Box>
   );
 };
