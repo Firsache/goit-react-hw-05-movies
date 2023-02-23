@@ -27,7 +27,7 @@ export const AddSection = styled.section`
 `;
 
 export const Button = styled.div`
-  padding: 10px 32px;
+  /* padding: 10px 32px; */
   max-width: 196px;
   max-height: 42px;
 

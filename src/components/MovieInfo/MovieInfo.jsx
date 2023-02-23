@@ -40,13 +40,29 @@ export const MovieInfo = ({ detailedInfo }) => {
           alignItems="center"
         >
           <Button>
-            <Link to={routes.CAST}>
+            <Link
+              to={routes.CAST}
+              style={{
+                paddingTop: 10,
+                paddingBottom: 10,
+                paddingLeft: 32,
+                paddingRight: 32,
+              }}
+            >
               <p>Cast</p>
             </Link>
           </Button>
 
           <Button>
-            <Link to={routes.REVIEWS}>
+            <Link
+              to={routes.REVIEWS}
+              style={{
+                paddingTop: 10,
+                paddingBottom: 10,
+                paddingLeft: 32,
+                paddingRight: 32,
+              }}
+            >
               <p>Reviews</p>
             </Link>
           </Button>
