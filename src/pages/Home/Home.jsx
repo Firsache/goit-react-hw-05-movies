@@ -4,7 +4,9 @@ import { Link, useLocation } from 'react-router-dom';
 
 import { getTrendingFilms } from 'services/api';
 import { routes } from 'helpers/routes';
-import { Loader } from 'components/index';
+import { Box, Loader } from 'components/index';
+
+import { List } from './Home.styled.js';
 
 const HomePage = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -32,15 +34,20 @@ const HomePage = () => {
     <>
       {error && <div>Try to reload the page</div>}
       {isLoading && <Loader />}
-      <ul>
-        {trendingMovies.map(({ id, title }) => (
-          <li key={id}>
-            <Link state={{ from: location }} to={routes.MOVIE_DETAILS_PATH(id)}>
-              <h3>{title}</h3>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <Box m="0 auto" maxWidth={1200} mt={32}>
+        <List>
+          {trendingMovies.map(({ id, title }) => (
+            <li key={id}>
+              <Link
+                state={{ from: location }}
+                to={routes.MOVIE_DETAILS_PATH(id)}
+              >
+                <h3>{title}</h3>
+              </Link>
+            </li>
+          ))}
+        </List>
+      </Box>
     </>
   );
 };
