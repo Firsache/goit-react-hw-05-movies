@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { routes } from 'helpers/routes';
 import { Box } from 'components';
 
@@ -13,6 +13,9 @@ export const MovieInfo = ({ detailedInfo }) => {
     release_date,
     vote_average,
   } = detailedInfo;
+
+  const location = useLocation();
+  const from = location.state?.from ?? routes.HOME;
 
   return (
     <Box m="0 auto" maxWidth={1200}>
@@ -39,11 +42,11 @@ export const MovieInfo = ({ detailedInfo }) => {
           width={250}
           alignItems="center"
         >
-          <StyledLink to={routes.CAST}>
+          <StyledLink to={routes.CAST} state={{ from }}>
             <p>Cast</p>
           </StyledLink>
 
-          <StyledLink to={routes.REVIEWS}>
+          <StyledLink to={routes.REVIEWS} state={{ from }}>
             <p>Reviews</p>
           </StyledLink>
         </Box>

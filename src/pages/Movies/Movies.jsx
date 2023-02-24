@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 
 import { getFilmByQuery } from 'services/api';
 
-import { Box, Form, Loader, MovieList } from 'components/index';
+import { Form, Loader, MovieList } from 'components/index';
 
 const MoviesPage = () => {
   const [searchedMovies, setSearchedMovies] = useState([]);
@@ -40,11 +40,7 @@ const MoviesPage = () => {
       {error && <div>Try to reload the page</div>}
       {isLoading && <Loader />}
       <Form onSubmit={handleOnSubmit} />
-      {searchedMovies.length > 0 && (
-        <Box m="0 auto" maxWidth={1200} mt={32}>
-          <MovieList array={searchedMovies} />
-        </Box>
-      )}
+      {Boolean(searchedMovies.length) && <MovieList array={searchedMovies} />}
     </>
   );
 };
