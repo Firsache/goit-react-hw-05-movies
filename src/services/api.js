@@ -1,5 +1,6 @@
 import axios from 'axios';
-import defaultPhoto from '../img/default-photo.jpeg';
+import defaultPhoto from 'img/default-photo.jpeg';
+import defaultActor from 'img/defaultPerson.jpeg';
 import { getGenres } from 'helpers/getGenres';
 
 const API_KEY = '7075a5d5708cc9d9db094f2ee386024f';
@@ -23,7 +24,7 @@ export const getFilmByQuery = async q => {
   const { data } = await axios.get('/search/movie', { params });
   const results = data.results.map(({ id, original_title }) => ({
     id,
-    original_title,
+    title: original_title,
   }));
   return { results };
 };
@@ -62,7 +63,17 @@ export const getCastInfo = async movieId => {
     language: 'en-US',
   };
   const { data } = await axios.get(`/movie/${movieId}/credits`, { params });
-  const array = data.cast;
+
+  const array = data.cast.map(
+    ({ id, original_name, profile_path, character }) => ({
+      id,
+      original_name,
+      profile_path: profile_path
+        ? 'https://image.tmdb.org/t/p/w300' + profile_path
+        : defaultActor,
+      character,
+    })
+  );
   return array;
 };
 

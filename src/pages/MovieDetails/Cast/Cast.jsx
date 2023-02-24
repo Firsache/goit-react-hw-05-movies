@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getCastInfo } from 'services/api';
 import { Loader } from 'components/index';
-import defaultActor from 'img/defaultPerson.jpeg';
 
 import { CastList, CastItem } from './Cast.styled';
 
@@ -40,13 +39,9 @@ const Cast = () => {
       {castInfo && (
         <CastList>
           {castInfo.map(({ id, original_name, profile_path, character }) => {
-            let path = profile_path
-              ? 'https://image.tmdb.org/t/p/w300' + profile_path
-              : defaultActor;
-
             return (
               <CastItem key={id}>
-                <img src={path} alt={original_name} />
+                <img src={profile_path} alt={original_name} />
                 <p>{original_name}</p>
                 <p>{character}</p>
               </CastItem>

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Section = styled.section`
@@ -26,8 +27,8 @@ export const AddSection = styled.section`
   gap: ${p => p.theme.space[5]}px;
 `;
 
-export const Button = styled.div`
-  /* padding: 10px 32px; */
+export const StyledLink = styled(Link)`
+  padding: 10px 32px;
   max-width: 196px;
   max-height: 42px;
 
@@ -42,7 +43,7 @@ export const Button = styled.div`
   background-color: ${p => p.theme.colors.backgroundColorHeader};
   color: ${p => p.theme.colors.white};
   border-radius: ${p => p.theme.radii.normal};
-  border-color: transparent;
+  border: 2px solid transparent;
   outline: none;
 
   transition: background-color ${p => p.theme.transition},

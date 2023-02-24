@@ -1,8 +1,8 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { routes } from 'helpers/routes';
 import { Box } from 'components';
 
-import { Section, AddSection, Info, Button } from './MovieInfo.styles';
+import { Section, AddSection, Info, StyledLink } from './MovieInfo.styles';
 
 export const MovieInfo = ({ detailedInfo }) => {
   const {
@@ -39,33 +39,13 @@ export const MovieInfo = ({ detailedInfo }) => {
           width={250}
           alignItems="center"
         >
-          <Button>
-            <Link
-              to={routes.CAST}
-              style={{
-                paddingTop: 10,
-                paddingBottom: 10,
-                paddingLeft: 32,
-                paddingRight: 32,
-              }}
-            >
-              <p>Cast</p>
-            </Link>
-          </Button>
+          <StyledLink to={routes.CAST}>
+            <p>Cast</p>
+          </StyledLink>
 
-          <Button>
-            <Link
-              to={routes.REVIEWS}
-              style={{
-                paddingTop: 10,
-                paddingBottom: 10,
-                paddingLeft: 32,
-                paddingRight: 32,
-              }}
-            >
-              <p>Reviews</p>
-            </Link>
-          </Button>
+          <StyledLink to={routes.REVIEWS}>
+            <p>Reviews</p>
+          </StyledLink>
         </Box>
       </AddSection>
 
